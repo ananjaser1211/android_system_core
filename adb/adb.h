@@ -203,8 +203,11 @@ extern const char* adb_device_banner;
 #define CHUNK_SIZE (64 * 1024)
 
 #if !ADB_HOST
-#define USB_FFS_ADB_PATH "/dev/usb-ffs/adb/"
-#define USB_FFS_ADB_EP(x) USB_FFS_ADB_PATH #x
+#ifdef LEGACY_ADB_INTERFACE
+#define USB_ADB_PATH     "/dev/android_adb"
+#endif
+#define USB_FFS_ADB_PATH  "/dev/usb-ffs/adb/"
+#define USB_FFS_ADB_EP(x) USB_FFS_ADB_PATH#x
 
 #define USB_FFS_ADB_EP0 USB_FFS_ADB_EP(ep0)
 #define USB_FFS_ADB_OUT USB_FFS_ADB_EP(ep1)
